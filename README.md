@@ -28,3 +28,7 @@ Set `NEXT_PUBLIC_SITE_URL` in production so Twitter can fetch the image (localho
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
+
+## Deploy on Cloudflare Workers
+
+See [CLOUDFLARE.md](./CLOUDFLARE.md). Build command must be `npm run build:cf` (not `npm run build`).
