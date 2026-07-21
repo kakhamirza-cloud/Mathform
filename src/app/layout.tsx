@@ -21,6 +21,9 @@ const serif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://unvoxd.site",
+  ),
   title: "UNVOXD — Formula Characters",
   description:
     "Enter a math formula. Forge a unique character NFT from its structure and results.",

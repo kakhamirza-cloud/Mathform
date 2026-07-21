@@ -14,14 +14,15 @@ In **Workers → your project → Settings → Build**, use these commands:
 
 `build:cf` runs `opennextjs-cloudflare build`, which creates `.open-next/` before Wrangler deploys.
 
-Also set:
+Also set (required for Twitter cards):
 
 ```
-NEXT_PUBLIC_SITE_URL=https://mathform.kakhamirza.workers.dev
+NEXT_PUBLIC_SITE_URL=https://unvoxd.site
 ```
 
-(or your custom domain) under **Build Variables and secrets**.
+under **Settings → Variables and secrets** (Build variables), then **Redeploy**.
 
+If this is missing, Open Graph tags can point at `http://localhost:3000/...` and X will show a plain link with no image.
 ## Enable workers.dev (if it shows Disabled)
 
 Your public URL won’t work while **workers.dev** is Disabled.

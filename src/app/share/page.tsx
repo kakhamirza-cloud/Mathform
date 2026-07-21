@@ -4,7 +4,8 @@ import Link from "next/link";
 import { ShareView } from "@/components/ShareView";
 import { analyzeFormula } from "@/lib/formula";
 import { buildTraits } from "@/lib/traits";
-import { buildCharacterImageUrl, buildShareUrl, getSiteUrl } from "@/lib/site";
+import { buildCharacterImageUrl, buildShareUrl } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site-server";
 
 type PageProps = {
   searchParams: Promise<{ f?: string }>;
@@ -14,12 +15,13 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const { f } = await searchParams;
-  const siteUrl = getSiteUrl();
+  const siteUrl = await getSiteUrl();
 
   if (!f?.trim()) {
     return {
       title: "UNVOXD Share",
       description: "Formula-forged character NFTs by UNVOXD.",
+      metadataBase: new URL(siteUrl),
     };
   }
 
@@ -31,6 +33,7 @@ export async function generateMetadata({
     const description = `${traits.rarity} ${traits.archetype} forged from: ${f}`;
 
     return {
+      metadataBase: new URL(siteUrl),
       title: `${traits.name} | UNVOXD`,
       description,
       openGraph: {
@@ -45,6 +48,7 @@ export async function generateMetadata({
             width: 1200,
             height: 1200,
             alt: traits.name,
+            type: "image/png",
           },
         ],
       },
@@ -59,6 +63,7 @@ export async function generateMetadata({
     };
   } catch {
     return {
+      metadataBase: new URL(siteUrl),
       title: "UNVOXD Share",
       description: "Formula-forged character NFTs by UNVOXD.",
     };
