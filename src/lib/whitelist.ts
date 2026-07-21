@@ -1,9 +1,9 @@
 export const TWITTER_HANDLE = "unvoxd_nft";
 
-/** Pin tweet for like / retweet / comment tasks — set in env when live. */
+/** Launch tweet for like / repost / reply whitelist tasks. */
 export const PINNED_TWEET_URL =
   process.env.NEXT_PUBLIC_UNVOXD_TWEET_URL ??
-  "https://x.com/unvoxd_nft";
+  "https://x.com/Unvoxd_NFT/status/2079606815873241285";
 
 export type WhitelistTaskId =
   | "follow"
