@@ -17,7 +17,22 @@ In **Workers → your project → Settings → Build**, use these commands:
 Also set:
 
 ```
-NEXT_PUBLIC_SITE_URL=https://your-workers-subdomain.workers.dev
+NEXT_PUBLIC_SITE_URL=https://mathform.kakhamirza.workers.dev
 ```
 
 (or your custom domain) under **Build Variables and secrets**.
+
+## Enable workers.dev (if it shows Disabled)
+
+Your public URL won’t work while **workers.dev** is Disabled.
+
+### Enable now in the dashboard
+1. Open **Workers & Pages** → **mathform**
+2. Go to **Settings** → **Domains & Routes** (or the **Domains** tab)
+3. Find **workers.dev** → click **Enable**
+4. Confirm
+
+Your site should then open at:  
+https://mathform.kakhamirza.workers.dev
+
+`wrangler.jsonc` now has `"workers_dev": true` so future deploys keep it on.
