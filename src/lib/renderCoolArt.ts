@@ -540,24 +540,70 @@ export function renderCoolArt(traits: CharacterTraits): HTMLCanvasElement {
   const lean =
     traits.stance === "lean" ? -8 : traits.stance === "stride" ? 6 : 0;
 
-  // --- background (same palette idea, richer) ---
-  const bg = ctx.createLinearGradient(0, 0, BASE, BASE);
-  bg.addColorStop(0, colors.paper);
-  bg.addColorStop(0.55, cssHsl(colors.secondary, 0.22));
-  bg.addColorStop(1, cssHsl(colors.primary, 0.28));
-  // paper is hsl string — mix with solid underpaint
-  ctx.fillStyle = colors.paper;
-  ctx.fillRect(0, 0, BASE, BASE);
-  ctx.fillStyle = bg;
+  // --- atmospheric background (cooler than flat forge wash) ---
+  const deep = ctx.createLinearGradient(0, 0, 0, BASE);
+  deep.addColorStop(0, shadeCss(colors.primary, -28));
+  deep.addColorStop(0.45, shadeCss(colors.secondary, -12));
+  deep.addColorStop(1, shadeCss(colors.primary, -34));
+  ctx.fillStyle = deep;
   ctx.fillRect(0, 0, BASE, BASE);
 
-  const glow = ctx.createRadialGradient(cx, cy - 20, 20, cx, cy, 280);
-  glow.addColorStop(0, cssHsl(colors.accent, 0.38));
-  glow.addColorStop(1, cssHsl(colors.accent, 0));
-  ctx.fillStyle = glow;
+  // diagonal color sweep
+  const sweep = ctx.createLinearGradient(0, 0, BASE, BASE);
+  sweep.addColorStop(0, cssHsl(colors.accent, 0.22));
+  sweep.addColorStop(0.4, cssHsl(colors.secondary, 0.12));
+  sweep.addColorStop(1, cssHsl(colors.primary, 0.18));
+  ctx.fillStyle = sweep;
   ctx.fillRect(0, 0, BASE, BASE);
 
+  // soft stage spotlight behind the character
+  const spotlight = ctx.createRadialGradient(cx, cy - 10, 30, cx, cy + 40, 340);
+  spotlight.addColorStop(0, cssHsl(colors.paper, 0.55));
+  spotlight.addColorStop(0.35, cssHsl(colors.accent, 0.28));
+  spotlight.addColorStop(0.7, cssHsl(colors.secondary, 0.1));
+  spotlight.addColorStop(1, cssHsl(colors.primary, 0));
+  ctx.fillStyle = spotlight;
+  ctx.fillRect(0, 0, BASE, BASE);
+
+  // secondary accent bloom (upper-left)
+  const bloom = ctx.createRadialGradient(110, 90, 10, 140, 120, 220);
+  bloom.addColorStop(0, cssHsl(colors.accent, 0.35));
+  bloom.addColorStop(1, cssHsl(colors.accent, 0));
+  ctx.fillStyle = bloom;
+  ctx.fillRect(0, 0, BASE, BASE);
+
+  // faint orbit rings in the void
+  for (let i = 0; i < 4; i++) {
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + 20, 200 + i * 55, 140 + i * 40, -0.25 + i * 0.12, 0, Math.PI * 2);
+    ctx.strokeStyle = cssHsl(i % 2 ? colors.accent : colors.secondary, 0.08 + i * 0.02);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // star / mote field from seed
+  const bgRng = createRng(traits.seed ^ 0xb6a0);
+  for (let i = 0; i < 70; i++) {
+    const x = bgRng.next() * BASE;
+    const y = bgRng.next() * BASE;
+    const r = 0.6 + bgRng.next() * 2.2;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = cssHsl(colors.paper, 0.08 + bgRng.next() * 0.22);
+    ctx.fill();
+  }
+
+  // soft vignette so the figure pops
+  const vignette = ctx.createRadialGradient(cx, cy, 160, cx, cy, 420);
+  vignette.addColorStop(0, "rgba(0,0,0,0)");
+  vignette.addColorStop(1, cssHsl(colors.ink, 0.38));
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, BASE, BASE);
+
+  // pattern stays subtle under the scene
+  ctx.globalAlpha = 0.55;
   drawPattern(ctx, traits.pattern, colors.ink, traits.seed);
+  ctx.globalAlpha = 1;
 
   ctx.save();
   ctx.translate(lean, stanceY);

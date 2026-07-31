@@ -229,26 +229,16 @@ export function MintStudio() {
 
         {showCoolArt && traits && <CoolArtStage traits={traits} />}
 
-        <div className="space-y-2 rounded-sm border border-[var(--ink)]/10 bg-[var(--paper)]/50 p-4">
-          <h3 className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
-            Share preview
-          </h3>
-          <p className="text-sm text-[var(--muted)]">
-            Your tweet includes a link with a large character image card and tags{" "}
-            <span className="font-mono text-[var(--ink)]">@unvoxd_nft</span>.
-          </p>
-          {traits && (
-            <>
-              <pre className="mt-2 overflow-x-auto whitespace-pre-wrap rounded-sm bg-[var(--ink)]/5 p-3 font-mono text-[11px] leading-relaxed text-[var(--ink)]/80">
-                {`I forged "${traits.name}" from ${traits.formula.length > 48 ? `${traits.formula.slice(0, 46)}…` : traits.formula} on UNVOXD\n\n${traits.rarity} · ${traits.archetype}\n\n@unvoxd_nft\n${shareUrl}`}
-              </pre>
-              <p className="text-xs text-[var(--muted)]">
-                Image preview works once deployed publicly — X reads the share link
-                and pulls your character art automatically.
-              </p>
-            </>
-          )}
-        </div>
+        {traits && (
+          <div className="space-y-2 rounded-sm border border-[var(--ink)]/10 bg-[var(--paper)]/50 p-4">
+            <h3 className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
+              Share preview
+            </h3>
+            <pre className="overflow-x-auto whitespace-pre-wrap rounded-sm bg-[var(--ink)]/5 p-3 font-mono text-[11px] leading-relaxed text-[var(--ink)]/80">
+              {`I forged "${traits.name}" from ${traits.formula.length > 48 ? `${traits.formula.slice(0, 46)}…` : traits.formula} on UNVOXD\n\n${traits.rarity} · ${traits.archetype}\n\n@unvoxd_nft\n${shareUrl}`}
+            </pre>
+          </div>
+        )}
       </aside>
     </div>
   );
