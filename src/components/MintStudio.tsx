@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { analyzeFormula } from "@/lib/formula";
 import { buildTraits, type CharacterTraits } from "@/lib/traits";
 import { renderCharacterSvg, svgToDataUrl } from "@/lib/renderCharacter";
-import { coolArtToDataUrl, downloadCoolArtPng } from "@/lib/renderCoolArt";
 import { getShareUrl, shareToTwitter } from "@/lib/share";
+import { CoolArtStage } from "@/components/CoolArtStage";
 
 const EXAMPLES = [
   "sin(x)^2 + cos(x)^2",
@@ -39,8 +39,7 @@ export function MintStudio() {
   const [traits, setTraits] = useState<CharacterTraits | null>(null);
   const [svg, setSvg] = useState<string>("");
   const [warn, setWarn] = useState<string | null>(null);
-  const [coolArtUrl, setCoolArtUrl] = useState<string | null>(null);
-  const [coolBusy, setCoolBusy] = useState(false);
+  const [showCoolArt, setShowCoolArt] = useState(false);
 
   const preview = useMemo(() => {
     if (!svg) return null;
@@ -59,7 +58,7 @@ export function MintStudio() {
       const nextSvg = renderCharacterSvg(nextTraits);
       setTraits(nextTraits);
       setSvg(nextSvg);
-      setCoolArtUrl(null);
+      setShowCoolArt(false);
       setError(null);
       setWarn(
         analysis.results.evaluated
@@ -72,7 +71,7 @@ export function MintStudio() {
       setError(err instanceof Error ? err.message : "Failed to generate");
       setTraits(null);
       setSvg("");
-      setCoolArtUrl(null);
+      setShowCoolArt(false);
       setWarn(null);
     }
   }
@@ -91,18 +90,6 @@ export function MintStudio() {
   function handleShare() {
     if (!traits) return;
     shareToTwitter(traits);
-  }
-
-  function handleCoolerArt() {
-    if (!traits) return;
-    setCoolBusy(true);
-    window.setTimeout(() => {
-      try {
-        setCoolArtUrl(coolArtToDataUrl(traits));
-      } finally {
-        setCoolBusy(false);
-      }
-    }, 30);
   }
 
   return (
@@ -148,11 +135,11 @@ export function MintStudio() {
             </button>
             <button
               type="button"
-              onClick={handleCoolerArt}
-              disabled={!traits || coolBusy}
+              onClick={() => setShowCoolArt(true)}
+              disabled={!traits}
               className="rounded-sm border border-[var(--copper)]/50 bg-[var(--copper)]/15 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--copper)] hover:text-[var(--paper)] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {coolBusy ? "Rendering…" : "Turn into cooler art"}
+              Turn into cooler art
             </button>
             <button
               type="button"
@@ -240,32 +227,7 @@ export function MintStudio() {
           )}
         </div>
 
-        {coolArtUrl && traits && (
-          <div className="space-y-3 rounded-sm border border-[var(--copper)]/35 bg-[var(--paper)]/60 p-3">
-            <div className="flex items-center justify-between gap-3 px-1">
-              <h3 className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
-                Cooler art
-              </h3>
-              <button
-                type="button"
-                onClick={() => downloadCoolArtPng(traits)}
-                className="rounded-sm bg-[var(--ink)] px-3 py-1.5 font-mono text-[11px] tracking-wide text-[var(--paper)] transition hover:bg-[var(--teal)]"
-              >
-                Download PNG
-              </button>
-            </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={coolArtUrl}
-              alt={`${traits.name} cooler art`}
-              className="aspect-square w-full object-contain"
-            />
-            <p className="px-1 text-xs text-[var(--muted)]">
-              Cel-shaded portrait from the same traits — bold ink, flat shade,
-              original creature (style reference only).
-            </p>
-          </div>
-        )}
+        {showCoolArt && traits && <CoolArtStage traits={traits} />}
 
         <div className="space-y-2 rounded-sm border border-[var(--ink)]/10 bg-[var(--paper)]/50 p-4">
           <h3 className="font-[family-name:var(--font-display)] text-lg text-[var(--ink)]">
