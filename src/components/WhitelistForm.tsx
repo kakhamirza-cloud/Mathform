@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import {
   WHITELIST_TASKS,
   countDoneTasks,
-  isEvmWallet,
+  isRobinhoodWallet,
   isTaskDone,
   normalizeXHandle,
   type WhitelistTask,
@@ -92,7 +92,7 @@ export function WhitelistForm() {
   const canSubmit =
     allTasksDone &&
     normalizeXHandle(xHandle).length > 0 &&
-    isEvmWallet(wallet) &&
+    isRobinhoodWallet(wallet) &&
     status !== "loading";
 
   function markOpened(id: WhitelistTaskId) {
@@ -166,7 +166,7 @@ export function WhitelistForm() {
           You&apos;re on the list
         </h2>
         <p className="font-mono text-sm text-[var(--muted)]">
-          @{normalizeXHandle(xHandle)} · {wallet.slice(0, 6)}…{wallet.slice(-4)}
+          @{normalizeXHandle(xHandle)} · Robinhood Wallet on file
         </p>
         <p className="mx-auto max-w-md text-sm text-[var(--muted)]">
           We&apos;ll review your forge proofs and reach out on X if you make the
@@ -190,8 +190,8 @@ export function WhitelistForm() {
             Prove your forge
           </h1>
           <p className="max-w-md text-sm text-[var(--muted)]">
-            Complete the five steps below, then leave your X handle and wallet.
-            Submit unlocks when every step is done.
+            Complete the five steps below, then leave your X handle and Robinhood
+            Wallet. Submit unlocks when every step is done.
           </p>
         </div>
         <Link href="/" className="forge-ghost-btn shrink-0">
@@ -254,13 +254,13 @@ export function WhitelistForm() {
 
           <label className="block space-y-2">
             <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-[var(--muted)]">
-              ETH wallet *
+              Robinhood Wallet *
             </span>
             <input
               type="text"
               value={wallet}
               onChange={(e) => setWallet(e.target.value)}
-              placeholder="0x…"
+              placeholder="Robinhood Wallet ID"
               className="forge-field"
               spellCheck={false}
               autoComplete="off"
@@ -268,9 +268,9 @@ export function WhitelistForm() {
           </label>
         </div>
 
-        {wallet && !isEvmWallet(wallet) && (
+        {wallet && !isRobinhoodWallet(wallet) && (
           <p className="text-sm text-[var(--danger)]">
-            Enter a valid Ethereum address (0x + 40 hex characters).
+            Enter your Robinhood Wallet ID (at least 3 characters).
           </p>
         )}
 

@@ -3,7 +3,7 @@ import path from "node:path";
 import { NextResponse } from "next/server";
 import {
   WHITELIST_TASKS,
-  isEvmWallet,
+  isRobinhoodWallet,
   isProofUrl,
   isTaskDone,
   normalizeXHandle,
@@ -47,8 +47,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "X handle is required" }, { status: 400 });
   }
 
-  if (!isEvmWallet(wallet)) {
-    return NextResponse.json({ error: "Valid EVM wallet required" }, { status: 400 });
+  if (!isRobinhoodWallet(wallet)) {
+    return NextResponse.json(
+      { error: "Valid Robinhood Wallet required" },
+      { status: 400 },
+    );
   }
 
   if (!body.tasks) {
@@ -95,7 +98,7 @@ export async function POST(request: Request) {
 
   if (duplicate) {
     return NextResponse.json(
-      { error: "This wallet or X handle already applied" },
+      { error: "This Robinhood Wallet or X handle already applied" },
       { status: 409 },
     );
   }

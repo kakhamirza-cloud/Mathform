@@ -80,8 +80,10 @@ export function normalizeXHandle(value: string): string {
   return value.trim().replace(/^@/, "");
 }
 
-export function isEvmWallet(value: string): boolean {
-  return /^0x[a-fA-F0-9]{40}$/.test(value.trim());
+/** Robinhood Wallet ID / address — any non-empty trimmed id (not ETH-format locked). */
+export function isRobinhoodWallet(value: string): boolean {
+  const v = value.trim();
+  return v.length >= 3 && v.length <= 120;
 }
 
 export type WhitelistSubmission = {
