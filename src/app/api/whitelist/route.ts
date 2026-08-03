@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
   if (!isRobinhoodWallet(wallet)) {
     return NextResponse.json(
-      { error: "Valid Robinhood Wallet required" },
+      { error: "Valid Robinhood Wallet address required" },
       { status: 400 },
     );
   }

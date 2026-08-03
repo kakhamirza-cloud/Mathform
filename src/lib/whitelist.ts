@@ -80,7 +80,7 @@ export function normalizeXHandle(value: string): string {
   return value.trim().replace(/^@/, "");
 }
 
-/** Robinhood Wallet ID — non-empty trimmed value within length limits. */
+/** Robinhood Wallet address — non-empty trimmed value within length limits. */
 export function isRobinhoodWallet(value: string): boolean {
   const v = value.trim();
   return v.length >= 3 && v.length <= 120;

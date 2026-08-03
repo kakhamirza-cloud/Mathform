@@ -260,7 +260,7 @@ export function WhitelistForm() {
               type="text"
               value={wallet}
               onChange={(e) => setWallet(e.target.value)}
-              placeholder="Robinhood Wallet ID"
+              placeholder="Robinhood Wallet address"
               className="forge-field"
               spellCheck={false}
               autoComplete="off"
@@ -270,7 +270,7 @@ export function WhitelistForm() {
 
         {wallet && !isRobinhoodWallet(wallet) && (
           <p className="text-sm text-[var(--danger)]">
-            Enter your Robinhood Wallet ID (at least 3 characters).
+            Enter your Robinhood Wallet address (at least 3 characters).
           </p>
         )}
 
