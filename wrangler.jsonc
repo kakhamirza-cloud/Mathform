@@ -20,6 +20,12 @@
   "images": {
     "binding": "IMAGES"
   },
+  "kv_namespaces": [
+    {
+      "binding": "WHITELIST",
+      "id": "c03a6f09c5894115af24a54200ce28f7"
+    }
+  ],
   "observability": {
     "enabled": true
   }

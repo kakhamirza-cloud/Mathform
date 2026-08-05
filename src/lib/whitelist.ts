@@ -3,7 +3,7 @@ export const TWITTER_HANDLE = "unvoxd_nft";
 /** Launch tweet for like / repost / reply whitelist tasks. */
 export const PINNED_TWEET_URL =
   process.env.NEXT_PUBLIC_UNVOXD_TWEET_URL ??
-  "https://x.com/Unvoxd_NFT/status/2079606815873241285";
+  "https://x.com/HoodForged/status/2085016566652117250";
 
 export type WhitelistTaskId =
   | "follow"
@@ -80,9 +80,14 @@ export function normalizeXHandle(value: string): string {
   return value.trim().replace(/^@/, "");
 }
 
+/** Strip trailing junk (colons, spaces) people paste from explorers. */
+export function normalizeRobinhoodWallet(value: string): string {
+  return value.trim().replace(/[:\s]+$/g, "");
+}
+
 /** Robinhood Wallet address — non-empty trimmed value within length limits. */
 export function isRobinhoodWallet(value: string): boolean {
-  const v = value.trim();
+  const v = normalizeRobinhoodWallet(value);
   return v.length >= 3 && v.length <= 120;
 }
 

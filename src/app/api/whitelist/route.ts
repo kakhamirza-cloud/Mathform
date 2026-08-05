@@ -1,16 +1,24 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextResponse } from "next/server";
 import {
   WHITELIST_TASKS,
   isRobinhoodWallet,
   isProofUrl,
   isTaskDone,
+  normalizeRobinhoodWallet,
   normalizeXHandle,
   type WhitelistTaskId,
 } from "@/lib/whitelist";
 
 export const runtime = "nodejs";
+
+/** Minimal KV surface we need — avoids pulling in full workers-types. */
+type WhitelistKv = {
+  get(key: string): Promise<string | null>;
+  put(key: string, value: string): Promise<void>;
+};
 
 type SubmitBody = {
   xHandle?: string;
@@ -18,17 +26,81 @@ type SubmitBody = {
   tasks?: Record<WhitelistTaskId, { done?: boolean; proof?: string }>;
 };
 
+type Submission = {
+  xHandle: string;
+  wallet: string;
+  tasks: SubmitBody["tasks"];
+  submittedAt: string;
+};
+
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "whitelist-submissions.json");
 
-async function readSubmissions(): Promise<unknown[]> {
+const WALLET_KEY = (wallet: string) => `wl:wallet:${wallet.toLowerCase()}`;
+const HANDLE_KEY = (handle: string) => `wl:handle:${handle.toLowerCase()}`;
+
+function getWhitelistKv(): WhitelistKv | null {
+  try {
+    const { env } = getCloudflareContext();
+    // Binding from wrangler.jsonc — not on the default OpenNext env type.
+    return (env as { WHITELIST?: WhitelistKv }).WHITELIST ?? null;
+  } catch {
+    // Local `next dev` without Cloudflare bindings.
+    return null;
+  }
+}
+
+async function readLocalSubmissions(): Promise<Submission[]> {
   try {
     const raw = await readFile(DATA_FILE, "utf8");
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? (parsed as Submission[]) : [];
   } catch {
     return [];
   }
+}
+
+async function hasDuplicate(
+  kv: WhitelistKv | null,
+  xHandle: string,
+  wallet: string,
+): Promise<boolean> {
+  if (kv) {
+    const [byWallet, byHandle] = await Promise.all([
+      kv.get(WALLET_KEY(wallet)),
+      kv.get(HANDLE_KEY(xHandle)),
+    ]);
+    return Boolean(byWallet || byHandle);
+  }
+
+  const existing = await readLocalSubmissions();
+  return existing.some(
+    (row) =>
+      row.wallet?.toLowerCase() === wallet.toLowerCase() ||
+      row.xHandle?.toLowerCase() === xHandle.toLowerCase(),
+  );
+}
+
+async function saveSubmission(
+  kv: WhitelistKv | null,
+  submission: Submission,
+): Promise<void> {
+  if (kv) {
+    // One record per wallet; handle index blocks duplicate X handles.
+    await Promise.all([
+      kv.put(WALLET_KEY(submission.wallet), JSON.stringify(submission)),
+      kv.put(HANDLE_KEY(submission.xHandle), submission.wallet.toLowerCase()),
+    ]);
+    return;
+  }
+
+  const existing = await readLocalSubmissions();
+  await mkdir(DATA_DIR, { recursive: true });
+  await writeFile(
+    DATA_FILE,
+    JSON.stringify([submission, ...existing], null, 2),
+    "utf8",
+  );
 }
 
 export async function POST(request: Request) {
@@ -41,7 +113,7 @@ export async function POST(request: Request) {
   }
 
   const xHandle = normalizeXHandle(body.xHandle ?? "");
-  const wallet = body.wallet?.trim() ?? "";
+  const wallet = normalizeRobinhoodWallet(body.wallet ?? "");
 
   if (!xHandle) {
     return NextResponse.json({ error: "X handle is required" }, { status: 400 });
@@ -80,37 +152,26 @@ export async function POST(request: Request) {
     }
   }
 
-  const submission = {
+  const submission: Submission = {
     xHandle,
     wallet,
     tasks: body.tasks,
     submittedAt: new Date().toISOString(),
   };
 
-  const existing = await readSubmissions();
-  const duplicate = existing.some(
-    (row) =>
-      typeof row === "object" &&
-      row !== null &&
-      ((row as { wallet?: string }).wallet?.toLowerCase() === wallet.toLowerCase() ||
-        (row as { xHandle?: string }).xHandle?.toLowerCase() === xHandle.toLowerCase()),
-  );
-
-  if (duplicate) {
-    return NextResponse.json(
-      { error: "This Robinhood Wallet or X handle already applied" },
-      { status: 409 },
-    );
-  }
+  const kv = getWhitelistKv();
 
   try {
-    await mkdir(DATA_DIR, { recursive: true });
-    await writeFile(
-      DATA_FILE,
-      JSON.stringify([submission, ...existing], null, 2),
-      "utf8",
-    );
-  } catch {
+    if (await hasDuplicate(kv, xHandle, wallet)) {
+      return NextResponse.json(
+        { error: "This Robinhood Wallet or X handle already applied" },
+        { status: 409 },
+      );
+    }
+
+    await saveSubmission(kv, submission);
+  } catch (err) {
+    console.error("whitelist save failed", err);
     return NextResponse.json(
       { error: "Could not save submission on server" },
       { status: 500 },
