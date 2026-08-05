@@ -200,6 +200,7 @@ export function MintStudio() {
               <StatBar label="Precision" value={traits.stats.precision} />
               <StatBar label="Chaos" value={traits.stats.chaos} />
               <StatBar label="Elegance" value={traits.stats.elegance} />
+              <StatBar label="Power" value={traits.stats.power} />
             </div>
 
             <p className="font-mono text-xs text-[var(--muted)]">

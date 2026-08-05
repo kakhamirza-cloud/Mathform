@@ -16,12 +16,20 @@ export default function Home() {
                 forge a one-of-one character you can share on X.
               </p>
             </div>
-            <Link
-              href="/whitelist"
-              className="wl-cta-btn shrink-0 rounded-sm px-5 py-3 text-sm font-medium tracking-[0.12em] uppercase"
-            >
-              Apply for whitelist
-            </Link>
+            <div className="flex shrink-0 flex-wrap items-center gap-3">
+              <Link
+                href="/power"
+                className="rounded-sm border border-[var(--teal)]/40 bg-[var(--teal)]/10 px-5 py-3 text-sm font-medium tracking-[0.12em] uppercase text-[var(--ink)] transition hover:bg-[var(--teal)] hover:text-[var(--paper)]"
+              >
+                Power preview
+              </Link>
+              <Link
+                href="/whitelist"
+                className="wl-cta-btn shrink-0 rounded-sm px-5 py-3 text-sm font-medium tracking-[0.12em] uppercase"
+              >
+                Apply for whitelist
+              </Link>
+            </div>
           </div>
         </div>
       </header>

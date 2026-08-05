@@ -29,6 +29,7 @@ export type CharacterTraits = {
     precision: number;
     chaos: number;
     elegance: number;
+    power: number;
   };
   glyphs: string[];
   resultEcho: string;
@@ -219,6 +220,26 @@ export function buildTraits(analysis: FormulaAnalysis): CharacterTraits {
       (100 - Math.min(40, analysis.structure.length)) * 0.4 +
       rng.next() * 10,
   );
+  // Power = work capacity for future formula-gathering workers
+  const power = clampStat(
+    12 +
+      complexity * 0.55 +
+      (analysis.structure.hasPi ? 8 : 0) +
+      (analysis.structure.hasE ? 8 : 0) +
+      (analysis.structure.hasInfinity ? 10 : 0) +
+      (analysis.structure.hasComplex ? 10 : 0) +
+      analysis.structure.functionCount * 5 +
+      (rarity === "Legendary"
+        ? 18
+        : rarity === "Epic"
+          ? 12
+          : rarity === "Rare"
+            ? 7
+            : rarity === "Uncommon"
+              ? 3
+              : 0) +
+      rng.next() * 8,
+  );
 
   return {
     seed: analysis.seed,
@@ -241,7 +262,7 @@ export function buildTraits(analysis: FormulaAnalysis): CharacterTraits {
       ink: hsl(hueA, 18, 16 + rng.next() * 8),
       paper: hsl(hueC, 12 + rng.next() * 10, 88 + rng.next() * 6),
     },
-    stats: { entropy, precision, chaos, elegance },
+    stats: { entropy, precision, chaos, elegance, power },
     glyphs,
     resultEcho,
     complexity,
