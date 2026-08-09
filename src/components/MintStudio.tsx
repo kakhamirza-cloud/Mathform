@@ -139,7 +139,7 @@ export function MintStudio() {
               disabled={!traits}
               className="rounded-sm border border-[var(--copper)]/50 bg-[var(--copper)]/15 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--copper)] hover:text-[var(--paper)] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Turn into cooler art
+              Turn into pixel art
             </button>
             <button
               type="button"
