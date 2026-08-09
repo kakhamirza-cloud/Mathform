@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@napi-rs/canvas": "^1.0.3",
-    "@opennextjs/cloudflare": "^1.20.1",
+    "@opennextjs/cloudflare": "^1.20.2",
     "mathjs": "^15.2.0",
-    "next": "16.2.10",
+    "next": "^16.2.12",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -27,7 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "^16.2.12",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.112.0"
