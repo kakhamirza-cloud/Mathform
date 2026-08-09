@@ -129,7 +129,7 @@ export function MintStudio() {
           <div className="flex flex-wrap gap-3 pt-1">
             <button
               type="submit"
-              className="forge-btn rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--paper)] transition hover:bg-[var(--teal)]"
+              className="forge-btn rounded-sm bg-[var(--teal)] px-5 py-3 text-sm font-semibold tracking-wide text-black transition hover:bg-[#00e006] hover:shadow-[0_0_24px_rgba(0,200,5,0.35)]"
             >
               Forge character
             </button>
@@ -137,7 +137,7 @@ export function MintStudio() {
               type="button"
               onClick={() => setShowCoolArt(true)}
               disabled={!traits}
-              className="rounded-sm border border-[var(--copper)]/50 bg-[var(--copper)]/15 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--copper)] hover:text-[var(--paper)] disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-sm border border-[var(--teal)]/40 bg-[var(--teal)]/10 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--teal)] hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
             >
               Turn into pixel art
             </button>
@@ -145,7 +145,7 @@ export function MintStudio() {
               type="button"
               onClick={handleShare}
               disabled={!traits}
-              className="share-btn rounded-sm border border-[#1a2332]/20 bg-[#1a2332] px-5 py-3 text-sm font-medium tracking-wide text-white transition hover:bg-[#2f6f66] disabled:cursor-not-allowed disabled:opacity-40"
+              className="share-btn rounded-sm border border-[var(--ink)]/20 bg-[var(--paper)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:border-[var(--teal)] hover:text-[var(--teal)] disabled:cursor-not-allowed disabled:opacity-40"
             >
               Share on X
             </button>
