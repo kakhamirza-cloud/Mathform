@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* Robinhood Chain–inspired: black canvas + brand green #00C805 */
+/* Solid brand canvas #ccff00 + black type */
 :root {
-  --ink: #f3f5f3;
-  --paper: #121612;
-  --muted: #8a948c;
-  --teal: #00c805;
-  --copper: #00a304;
-  --danger: #ff5000;
-  --wash: #0a0d0a;
-  --background: #000000;
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --muted: #3a4500;
+  --teal: #0a0a0a;
+  --copper: #1a1a1a;
+  --danger: #c41e00;
+  --wash: #b8e600;
+  --background: #ccff00;
   --foreground: var(--ink);
-  --border: rgba(243, 245, 243, 0.12);
-  --surface: rgba(18, 22, 18, 0.92);
+  --border: rgba(10, 10, 10, 0.18);
+  --surface: rgba(255, 255, 255, 0.72);
+  --brand: #ccff00;
 }
 
 @theme inline {
@@ -23,11 +24,7 @@
 }
 
 body {
-  background:
-    radial-gradient(900px 480px at 12% -8%, rgba(0, 200, 5, 0.22), transparent 55%),
-    radial-gradient(700px 420px at 95% 8%, rgba(0, 163, 4, 0.12), transparent 50%),
-    radial-gradient(600px 400px at 50% 100%, rgba(0, 200, 5, 0.08), transparent 55%),
-    #000000;
+  background: #ccff00;
   color: var(--foreground);
   font-family: var(--font-serif), "Times New Roman", serif;
   min-height: 100vh;
@@ -39,8 +36,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 200, 5, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 200, 5, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(10, 10, 10, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 78%);
   z-index: 0;
@@ -61,7 +58,7 @@ footer {
   background: linear-gradient(
     120deg,
     transparent 30%,
-    rgba(0, 200, 5, 0.18) 46%,
+    rgba(255, 255, 255, 0.45) 46%,
     transparent 62%
   );
   transform: translateX(-120%);
@@ -69,20 +66,20 @@ footer {
 }
 
 .preview-frame {
-  background: rgba(18, 22, 18, 0.85) !important;
-  border-color: rgba(0, 200, 5, 0.22) !important;
-  box-shadow: 0 24px 60px -28px rgba(0, 200, 5, 0.35) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(10, 10, 10, 0.2) !important;
+  box-shadow: 0 24px 60px -28px rgba(10, 10, 10, 0.35) !important;
 }
 
 .trait-panel {
   animation: rise 0.55s ease-out both;
-  border-color: rgba(243, 245, 243, 0.1) !important;
+  border-color: rgba(10, 10, 10, 0.14) !important;
 }
 
 .rarity-chip {
   animation: pulse-soft 2.8s ease-in-out infinite;
-  background: rgba(0, 200, 5, 0.1) !important;
-  border-color: rgba(0, 200, 5, 0.35) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(10, 10, 10, 0.25) !important;
 }
 
 @keyframes sheen {
@@ -110,10 +107,10 @@ footer {
 @keyframes pulse-soft {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 200, 5, 0);
+    box-shadow: 0 0 0 0 rgba(10, 10, 10, 0);
   }
   50% {
-    box-shadow: 0 0 0 4px rgba(0, 200, 5, 0.16);
+    box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.12);
   }
 }
 
@@ -133,21 +130,21 @@ footer {
 .brand-mark {
   animation: brand-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   color: var(--ink);
-  text-shadow: 0 0 40px rgba(0, 200, 5, 0.25);
+  text-shadow: none;
 }
 
-/* Whitelist / forge UI on dark Robinhood canvas */
+/* Whitelist / forge UI on #ccff00 canvas */
 .wl-cta-btn {
-  background: var(--teal);
-  color: #000000;
+  background: var(--ink);
+  color: #ccff00;
   border: 1px solid transparent;
   font-weight: 600;
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .wl-cta-btn:hover {
-  background: #00e006;
-  box-shadow: 0 0 24px rgba(0, 200, 5, 0.35);
+  background: #1a1a1a;
+  box-shadow: 0 0 24px rgba(10, 10, 10, 0.25);
 }
 
 .wl-cta-btn:active {
@@ -169,7 +166,7 @@ footer {
   text-transform: uppercase;
   color: var(--muted);
   border: 1px solid var(--border);
-  background: rgba(0, 200, 5, 0.06);
+  background: rgba(255, 255, 255, 0.45);
   padding: 0.5rem 0.8rem;
   border-radius: 2px;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
@@ -177,20 +174,20 @@ footer {
 
 .forge-ghost-btn:hover {
   color: var(--ink);
-  border-color: rgba(0, 200, 5, 0.45);
-  background: rgba(0, 200, 5, 0.12);
+  border-color: rgba(10, 10, 10, 0.4);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .forge-progress {
   height: 3px;
-  background: rgba(243, 245, 243, 0.1);
+  background: rgba(10, 10, 10, 0.12);
   border-radius: 999px;
   overflow: hidden;
 }
 
 .forge-progress__fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--teal), #66ff6a);
+  background: linear-gradient(90deg, #0a0a0a, #333333);
   transition: width 0.35s ease;
 }
 
@@ -201,14 +198,14 @@ footer {
   align-items: start;
   padding: 0.95rem 1rem;
   border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.55);
   border-radius: 2px;
   transition: border-color 0.2s, background 0.2s;
 }
 
 .forge-quest--done {
-  border-color: rgba(0, 200, 5, 0.45);
-  background: rgba(0, 200, 5, 0.1);
+  border-color: rgba(10, 10, 10, 0.45);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .forge-quest__glyph {
@@ -220,14 +217,14 @@ footer {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.15rem;
   color: var(--ink);
-  background: rgba(0, 200, 5, 0.08);
-  border: 1px solid rgba(0, 200, 5, 0.18);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 10, 10, 0.18);
 }
 
 .forge-quest--done .forge-quest__glyph {
-  color: var(--teal);
-  border-color: rgba(0, 200, 5, 0.4);
-  background: rgba(0, 200, 5, 0.14);
+  color: var(--ink);
+  border-color: rgba(10, 10, 10, 0.4);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .forge-quest__row {
@@ -260,16 +257,16 @@ footer {
   padding: 0.45rem 0.75rem;
   border-radius: 2px;
   border: 1px solid transparent;
-  background: var(--teal);
-  color: #000000;
+  background: var(--ink);
+  color: #ccff00;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
 }
 
 .forge-quest__action:hover {
-  background: #00e006;
-  box-shadow: 0 0 16px rgba(0, 200, 5, 0.3);
+  background: #1a1a1a;
+  box-shadow: 0 0 16px rgba(10, 10, 10, 0.22);
 }
 
 .forge-field {
@@ -278,7 +275,7 @@ footer {
   padding: 0.7rem 0.8rem;
   border-radius: 2px;
   border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.8);
   color: var(--ink);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.8rem;
@@ -286,12 +283,12 @@ footer {
 }
 
 .forge-field::placeholder {
-  color: rgba(138, 148, 140, 0.75);
+  color: rgba(58, 69, 0, 0.65);
 }
 
 .forge-field:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(0, 200, 5, 0.22);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px rgba(10, 10, 10, 0.18);
 }
 
 .forge-submit {
@@ -301,16 +298,16 @@ footer {
   padding: 0.9rem 1rem;
   border-radius: 2px;
   border: none;
-  background: var(--teal);
-  color: #000000;
+  background: var(--ink);
+  color: #ccff00;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .forge-submit:not(:disabled):hover {
-  background: #00e006;
-  box-shadow: 0 0 28px rgba(0, 200, 5, 0.35);
+  background: #1a1a1a;
+  box-shadow: 0 0 28px rgba(10, 10, 10, 0.28);
 }
 
 .forge-submit:not(:disabled):active {
@@ -342,7 +339,7 @@ footer {
 
 .power-bar {
   transition: width 0.05s linear;
-  box-shadow: 0 0 16px rgba(0, 200, 5, 0.55);
+  box-shadow: 0 0 16px rgba(10, 10, 10, 0.35);
 }
 
 .power-count {
@@ -354,7 +351,7 @@ footer {
 }
 
 .power-slider {
-  accent-color: var(--teal);
+  accent-color: var(--ink);
   height: 0.35rem;
   cursor: pointer;
 }
@@ -362,11 +359,11 @@ footer {
 @keyframes power-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 200, 5, 0.2);
+    box-shadow: 0 0 0 0 rgba(10, 10, 10, 0.15);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(0, 200, 5, 0.1);
+    box-shadow: 0 0 0 10px rgba(10, 10, 10, 0.08);
     transform: scale(1.03);
   }
 }

@@ -328,8 +328,8 @@ export function renderPixelArt(traits: CharacterTraits): HTMLCanvasElement {
   const secondary = fromCss(traits.colors.secondary);
   const accent = fromCss(traits.colors.accent);
   const ink = fromCss(traits.colors.ink, -20);
-  // Robinhood Chain brand green backdrop
-  const bg: RGB = [0, 200, 5]; // #00C805
+  // Brand canvas #ccff00
+  const bg: RGB = [204, 255, 0];
 
   fillRect(buf, 0, 0, GRID, GRID, bg);
   drawAuraPixels(buf, traits.aura, accent, secondary, traits.seed);

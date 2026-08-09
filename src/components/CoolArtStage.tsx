@@ -25,7 +25,7 @@ export function CoolArtStage({ traits }: CoolArtStageProps) {
         <button
           type="button"
           onClick={() => downloadPixelArt(traits)}
-          className="rounded-sm bg-[var(--ink)] px-3 py-1.5 font-mono text-[11px] tracking-wide text-[var(--paper)] transition hover:bg-[var(--teal)]"
+          className="rounded-sm bg-[var(--ink)] px-3 py-1.5 font-mono text-[11px] tracking-wide text-[var(--brand)] transition hover:bg-[#1a1a1a]"
         >
           Download PNG
         </button>

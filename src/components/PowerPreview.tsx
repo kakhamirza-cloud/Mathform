@@ -180,7 +180,7 @@ export function PowerPreview() {
                 type="button"
                 onClick={handleStake}
                 disabled={staked}
-                className="rounded-sm bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] transition hover:bg-[var(--teal)] disabled:cursor-not-allowed disabled:opacity-45"
+                className="rounded-sm bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--brand)] transition hover:bg-[#1a1a1a] disabled:cursor-not-allowed disabled:opacity-45"
               >
                 {staked ? "Staked" : "Stake worker"}
               </button>

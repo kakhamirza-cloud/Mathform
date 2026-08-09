@@ -70,7 +70,7 @@ export function ShareView() {
         </p>
         <Link
           href="/"
-          className="inline-block rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition hover:bg-[var(--teal)]"
+          className="inline-block rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--brand)] transition hover:bg-[#1a1a1a]"
         >
           Forge yours
         </Link>

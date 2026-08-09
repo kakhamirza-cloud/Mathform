@@ -19,7 +19,7 @@ export default function Home() {
             <div className="flex shrink-0 flex-wrap items-center gap-3">
               <Link
                 href="/power"
-                className="rounded-sm border border-[var(--teal)]/45 bg-[var(--teal)]/10 px-5 py-3 text-sm font-medium tracking-[0.12em] uppercase text-[var(--ink)] transition hover:bg-[var(--teal)] hover:text-black"
+                className="rounded-sm border border-[var(--ink)]/45 bg-white/40 px-5 py-3 text-sm font-medium tracking-[0.12em] uppercase text-[var(--ink)] transition hover:bg-[var(--ink)] hover:text-[var(--brand)]"
               >
                 Power preview
               </Link>

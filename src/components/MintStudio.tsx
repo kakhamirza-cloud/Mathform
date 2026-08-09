@@ -129,7 +129,7 @@ export function MintStudio() {
           <div className="flex flex-wrap gap-3 pt-1">
             <button
               type="submit"
-              className="forge-btn rounded-sm bg-[var(--teal)] px-5 py-3 text-sm font-semibold tracking-wide text-black transition hover:bg-[#00e006] hover:shadow-[0_0_24px_rgba(0,200,5,0.35)]"
+              className="forge-btn rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-semibold tracking-wide text-[var(--brand)] transition hover:bg-[#1a1a1a] hover:shadow-[0_0_24px_rgba(10,10,10,0.28)]"
             >
               Forge character
             </button>
@@ -137,7 +137,7 @@ export function MintStudio() {
               type="button"
               onClick={() => setShowCoolArt(true)}
               disabled={!traits}
-              className="rounded-sm border border-[var(--teal)]/40 bg-[var(--teal)]/10 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--teal)] hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-sm border border-[var(--ink)]/40 bg-white/40 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--ink)] hover:text-[var(--brand)] disabled:cursor-not-allowed disabled:opacity-40"
             >
               Turn into pixel art
             </button>

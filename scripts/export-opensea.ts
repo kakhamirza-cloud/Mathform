@@ -9,7 +9,7 @@
  *
  * Output:
  *   opensea-export/forge/images/*.svg
- *   opensea-export/cooler/images/*.png  (pixel art — Robinhood green bg)
+ *   opensea-export/cooler/images/*.png  (pixel art — #ccff00 bg)
  *   opensea-export/metadata/*.json
  */
 import fs from "fs";
@@ -111,7 +111,7 @@ function main() {
 
   console.log(
     pixelOnly
-      ? `Rewriting ${count} cooler PNGs → pixel art (Robinhood green)`
+      ? `Rewriting ${count} cooler PNGs → pixel art (#ccff00)`
       : `Exporting ${count} forge SVG + pixel PNG`,
   );
 
@@ -133,7 +133,7 @@ function main() {
 
     const meta = {
       name: `${traits.name} #${tokenId}`,
-      description: `Hood Forged character from: ${traits.formula}. 24×24 pixel art on Robinhood green. Power ${traits.stats.power}/99.`,
+      description: `Hood Forged character from: ${traits.formula}. 24×24 pixel art on #ccff00. Power ${traits.stats.power}/99.`,
       image: `ipfs://REPLACE_PIXEL_CID/${tokenId}.png`,
       animation_url: `ipfs://REPLACE_FORGE_CID/${tokenId}.svg`,
       external_url: "https://unvoxd.site",
@@ -167,7 +167,7 @@ function main() {
         art: {
           forge: "forge/images/*.svg — base on-site forge look",
           pixel:
-            "cooler/images/*.png — 24×24 pixel art (Robinhood green bg)",
+            "cooler/images/*.png — 24×24 pixel art (#ccff00 bg)",
         },
         description:
           "Formula-forged characters. Pixel art mint image. Same formula = same character. Power fuels worker formula gathering.",
@@ -188,7 +188,7 @@ function main() {
 | Path | What |
 |---|---|
 | \`forge/images/*.svg\` | Base forge characters |
-| \`cooler/images/*.png\` | **Pixel art** (24×24 upscaled, Robinhood green) — main OpenSea image |
+| \`cooler/images/*.png\` | **Pixel art** (24×24 upscaled, #ccff00) — main OpenSea image |
 | \`metadata/*.json\` | OpenSea traits (includes **Power**) |
 
 ## Full 3333
