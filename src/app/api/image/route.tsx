@@ -180,7 +180,7 @@ export async function GET(request: Request) {
               fontFamily: "monospace",
             }}
           >
-            <span>@unvoxd_nft</span>
+            <span>@HoodForged</span>
             <span>#{traits.seed.toString(16)}</span>
           </div>
         </div>

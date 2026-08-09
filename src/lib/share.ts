@@ -1,7 +1,7 @@
 import type { CharacterTraits } from "./traits";
 import { buildShareUrl } from "./site";
 
-const TWITTER_HANDLE = "unvoxd_nft";
+const TWITTER_HANDLE = "HoodForged";
 
 function truncateFormula(formula: string, max = 72): string {
   const compact = formula.replace(/\s+/g, " ").trim();
@@ -9,7 +9,7 @@ function truncateFormula(formula: string, max = 72): string {
   return `${compact.slice(0, max - 1)}…`;
 }
 
-/** Pre-filled tweet with character details, share link (image preview), and @unvoxd_nft. */
+/** Pre-filled tweet with character details, share link (image preview), and @HoodForged. */
 export function buildTweetText(
   traits: CharacterTraits,
   shareUrl: string,

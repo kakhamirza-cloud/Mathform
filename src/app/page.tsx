@@ -40,7 +40,7 @@ export default function Home() {
 
       <footer className="border-t border-[var(--ink)]/10 px-6 py-6 text-sm text-[var(--muted)] sm:px-10">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
-          <span>Share your forge · tag @unvoxd_nft · same formula → same character</span>
+          <span>Share your forge · tag @HoodForged · same formula → same character</span>
           <span className="font-mono text-xs tracking-wider uppercase">
             formula × results → character
           </span>

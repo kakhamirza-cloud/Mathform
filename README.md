@@ -1,6 +1,6 @@
 # UNVOXD — Formula Character NFTs
 
-Enter a math formula. The app analyzes **both** the written formula and sampled numeric results, then forges a unique procedural character (SVG) you can share on X (@unvoxd_nft).
+Enter a math formula. The app analyzes **both** the written formula and sampled numeric results, then forges a unique procedural character (SVG) you can share on X (@HoodForged).
 
 ## Run
 
@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Share on X
 
-Click **Share on X** to open a pre-filled tweet with your character details, a share link, and @unvoxd_nft. X loads the character image from the share link as a large preview card.
+Click **Share on X** to open a pre-filled tweet with your character details, a share link, and @HoodForged. X loads the character image from the share link as a large preview card.
 
 Set `NEXT_PUBLIC_SITE_URL` in production so Twitter can fetch the image (localhost won't show previews).
 

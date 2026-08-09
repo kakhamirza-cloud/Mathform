@@ -54,8 +54,8 @@ export async function generateMetadata({
       },
       twitter: {
         card: "summary_large_image",
-        site: "@unvoxd_nft",
-        creator: "@unvoxd_nft",
+        site: "@HoodForged",
+        creator: "@HoodForged",
         title: `${traits.name} | UNVOXD`,
         description,
         images: [imageUrl],

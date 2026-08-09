@@ -1,4 +1,4 @@
-export const TWITTER_HANDLE = "unvoxd_nft";
+export const TWITTER_HANDLE = "HoodForged";
 
 /** Launch tweet for like / repost / reply whitelist tasks. */
 export const PINNED_TWEET_URL =
@@ -47,7 +47,7 @@ export const WHITELIST_TASKS: WhitelistTask[] = [
   {
     id: "post",
     step: "04",
-    title: "Share your forged character on X (tag @unvoxd_nft)",
+    title: `Share your forged character on X (tag @${TWITTER_HANDLE})`,
     openUrl: "/",
     openLabel: "Forge",
     needsProof: true,
