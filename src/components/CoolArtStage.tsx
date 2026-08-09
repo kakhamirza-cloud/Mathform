@@ -19,7 +19,7 @@ export function CoolArtStage({ traits }: CoolArtStageProps) {
             Pixel art
           </h3>
           <p className="font-mono text-[10px] tracking-wider uppercase text-[var(--muted)]">
-            24×24 · CryptoPunks-style
+            24×24 pixel art
           </p>
         </div>
         <button

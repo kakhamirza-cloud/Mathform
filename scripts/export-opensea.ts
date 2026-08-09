@@ -1,5 +1,5 @@
 /**
- * Export forge SVG + CryptoPunks-style pixel PNG for OpenSea.
+ * Export forge SVG + pixel PNG for OpenSea.
  *
  * Usage:
  *   npx tsx scripts/export-opensea.ts [count]
@@ -133,7 +133,7 @@ function main() {
 
     const meta = {
       name: `${traits.name} #${tokenId}`,
-      description: `Hood Forged character from: ${traits.formula}. CryptoPunks-style 24×24 pixel art on Robinhood green. Power ${traits.stats.power}/99.`,
+      description: `Hood Forged character from: ${traits.formula}. 24×24 pixel art on Robinhood green. Power ${traits.stats.power}/99.`,
       image: `ipfs://REPLACE_PIXEL_CID/${tokenId}.png`,
       animation_url: `ipfs://REPLACE_FORGE_CID/${tokenId}.svg`,
       external_url: "https://unvoxd.site",
@@ -167,7 +167,7 @@ function main() {
         art: {
           forge: "forge/images/*.svg — base on-site forge look",
           pixel:
-            "cooler/images/*.png — CryptoPunks-style pixel art (Robinhood green bg)",
+            "cooler/images/*.png — 24×24 pixel art (Robinhood green bg)",
         },
         description:
           "Formula-forged characters. Pixel art mint image. Same formula = same character. Power fuels worker formula gathering.",

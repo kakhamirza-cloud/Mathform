@@ -1,6 +1,6 @@
 /**
- * CryptoPunks-style pixel forge art.
- * Native grid is 24×24 (same as classic Punks), then nearest-neighbor upscaled.
+ * Pixel forge art.
+ * Native grid is 24×24, then nearest-neighbor upscaled.
  * Same formula traits → same pixel bytes.
  */
 import type { CharacterTraits } from "./traits";
@@ -76,14 +76,14 @@ function fillRect(
   }
 }
 
-/** CryptoPunks-ish head silhouette from trait head type. */
+/** Head silhouette from trait head type. */
 function drawHead(
   buf: Uint8ClampedArray,
   kind: string,
   skin: RGB,
   ink: RGB,
 ) {
-  // Classic punk bust: head ~x 6–17, y 4–15, neck, shoulders
+  // Bust: head ~x 6–17, y 4–15, neck, shoulders
   const body = shade(skin, -18);
 
   // shoulders / torso strip
@@ -116,12 +116,12 @@ function drawHead(
     fillRect(buf, 7, 4, 10, 12, skin);
     fillRect(buf, 8, 16, 8, 1, skin);
   } else {
-    // round / default — closest to CryptoPunks head box
+    // round / default head box
     fillRect(buf, 7, 4, 10, 1, skin);
     fillRect(buf, 6, 5, 12, 11, skin);
   }
 
-  // outline ticks (left/right edges) for punk punch
+  // outline ticks (left/right edges)
   for (let y = 5; y <= 15; y++) {
     setPx(buf, 5, y, ink);
     setPx(buf, 18, y, ink);
@@ -240,7 +240,7 @@ function drawAccessory(
   ink: RGB,
   primary: RGB,
 ) {
-  // Map math accessories → punk-style overlays (hat / glasses / pipe / earring)
+  // Map math accessories → overlays (hat / glasses / pipe / earring)
   if (accessory.includes("crown") || accessory.includes("π")) {
     fillRect(buf, 8, 2, 8, 2, accent);
     setPx(buf, 8, 1, accent);
@@ -307,7 +307,7 @@ function drawAuraPixels(
   }
 }
 
-/** Render CryptoPunks-style pixel character from forge traits. */
+/** Render pixel character from forge traits. */
 export function renderPixelArt(traits: CharacterTraits): HTMLCanvasElement {
   const low = document.createElement("canvas");
   low.width = GRID;
@@ -328,7 +328,7 @@ export function renderPixelArt(traits: CharacterTraits): HTMLCanvasElement {
   const secondary = fromCss(traits.colors.secondary);
   const accent = fromCss(traits.colors.accent);
   const ink = fromCss(traits.colors.ink, -20);
-  // Robinhood Chain brand green — solid CryptoPunks-style backdrop
+  // Robinhood Chain brand green backdrop
   const bg: RGB = [0, 200, 5]; // #00C805
 
   fillRect(buf, 0, 0, GRID, GRID, bg);
