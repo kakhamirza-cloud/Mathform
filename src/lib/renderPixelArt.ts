@@ -328,8 +328,8 @@ export function renderPixelArt(traits: CharacterTraits): HTMLCanvasElement {
   const secondary = fromCss(traits.colors.secondary);
   const accent = fromCss(traits.colors.accent);
   const ink = fromCss(traits.colors.ink, -20);
-  // Punk-like solid backdrop (trait-tinted, not photo bg)
-  const bg = fromCss(traits.colors.paper, -40);
+  // Robinhood Chain brand green — solid CryptoPunks-style backdrop
+  const bg: RGB = [0, 200, 5]; // #00C805
 
   fillRect(buf, 0, 0, GRID, GRID, bg);
   drawAuraPixels(buf, traits.aura, accent, secondary, traits.seed);
