@@ -170,7 +170,7 @@ export function WhitelistForm() {
         </p>
         <p className="mx-auto max-w-md text-sm text-[var(--muted)]">
           We&apos;ll review your forge proofs and reach out on X if you make the
-          UNVOXD whitelist.
+          Hood Forged whitelist.
         </p>
         <Link href="/" className="forge-ghost-btn inline-block">
           Return home

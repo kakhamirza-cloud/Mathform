@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PowerPreview } from "@/components/PowerPreview";
 
 export const metadata: Metadata = {
-  title: "Power | UNVOXD",
+  title: "Power | Hood Forged",
   description:
-    "Preview how Power turns UNVOXD characters into formula-gathering workers.",
+    "Preview how Power turns Hood Forged characters into formula-gathering workers.",
 };
 
 export default function PowerPage() {
@@ -17,7 +17,7 @@ export default function PowerPage() {
             href="/"
             className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-[0.14em] text-[var(--ink)]"
           >
-            UNVOXD
+            Hood Forged
           </Link>
           <nav className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider uppercase">
             <Link href="/" className="text-[var(--muted)] hover:text-[var(--ink)]">

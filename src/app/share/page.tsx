@@ -19,8 +19,8 @@ export async function generateMetadata({
 
   if (!f?.trim()) {
     return {
-      title: "UNVOXD Share",
-      description: "Formula-forged character NFTs by UNVOXD.",
+      title: "Hood Forged Share",
+      description: "Formula-forged character NFTs by Hood Forged.",
       metadataBase: new URL(siteUrl),
     };
   }
@@ -34,14 +34,14 @@ export async function generateMetadata({
 
     return {
       metadataBase: new URL(siteUrl),
-      title: `${traits.name} | UNVOXD`,
+      title: `${traits.name} | Hood Forged`,
       description,
       openGraph: {
         type: "website",
         url: shareUrl,
-        title: `${traits.name} | UNVOXD`,
+        title: `${traits.name} | Hood Forged`,
         description,
-        siteName: "UNVOXD",
+        siteName: "Hood Forged",
         images: [
           {
             url: imageUrl,
@@ -56,7 +56,7 @@ export async function generateMetadata({
         card: "summary_large_image",
         site: "@HoodForged",
         creator: "@HoodForged",
-        title: `${traits.name} | UNVOXD`,
+        title: `${traits.name} | Hood Forged`,
         description,
         images: [imageUrl],
       },
@@ -64,8 +64,8 @@ export async function generateMetadata({
   } catch {
     return {
       metadataBase: new URL(siteUrl),
-      title: "UNVOXD Share",
-      description: "Formula-forged character NFTs by UNVOXD.",
+      title: "Hood Forged Share",
+      description: "Formula-forged character NFTs by Hood Forged.",
     };
   }
 }
@@ -79,7 +79,7 @@ export default function SharePage() {
             href="/"
             className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-[0.14em] text-[var(--ink)]"
           >
-            UNVOXD
+            Hood Forged
           </Link>
           <p className="font-mono text-xs tracking-wider uppercase text-[var(--muted)]">
             Shared character

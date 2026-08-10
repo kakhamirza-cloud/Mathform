@@ -236,7 +236,7 @@ export function MintStudio() {
               Share preview
             </h3>
             <pre className="overflow-x-auto whitespace-pre-wrap rounded-sm bg-[var(--ink)]/5 p-3 font-mono text-[11px] leading-relaxed text-[var(--ink)]/80">
-              {`I forged "${traits.name}" from ${traits.formula.length > 48 ? `${traits.formula.slice(0, 46)}…` : traits.formula} on UNVOXD\n\n${traits.rarity} · ${traits.archetype}\n\n@HoodForged\n${shareUrl}`}
+              {`I forged "${traits.name}" from ${traits.formula.length > 48 ? `${traits.formula.slice(0, 46)}…` : traits.formula} on Hood Forged\n\n${traits.rarity} · ${traits.archetype}\n\n@HoodForged\n${shareUrl}`}
             </pre>
           </div>
         )}

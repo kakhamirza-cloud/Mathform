@@ -1,4 +1,4 @@
-# UNVOXD — Formula Character NFTs
+# Hood Forged — Formula Character NFTs
 
 Enter a math formula. The app analyzes **both** the written formula and sampled numeric results, then forges a unique procedural character (SVG) you can share on X (@HoodForged).
 

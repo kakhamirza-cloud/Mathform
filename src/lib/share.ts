@@ -16,7 +16,7 @@ export function buildTweetText(
 ): string {
   const formula = truncateFormula(traits.formula);
   return [
-    `I forged "${traits.name}" from ${formula} on UNVOXD`,
+    `I forged "${traits.name}" from ${formula} on Hood Forged`,
     "",
     `${traits.rarity} · ${traits.archetype} · Complexity ${traits.complexity}`,
     "Every math formula becomes a one-of-one character.",

@@ -9,7 +9,7 @@ export default function Home() {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="brand-mark font-[family-name:var(--font-display)] text-4xl font-extrabold tracking-[0.18em] text-[var(--ink)] sm:text-6xl">
-                UNVOXD
+                Hood Forged
               </p>
               <p className="mt-4 max-w-xl text-base text-[var(--muted)] sm:text-lg">
                 Type a formula. We read its structure and sample its results, then

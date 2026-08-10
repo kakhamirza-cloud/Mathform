@@ -28,7 +28,7 @@ export function ShareView() {
       <div className="mx-auto max-w-lg space-y-4 py-20 text-center">
         <p className="text-[var(--muted)]">No formula in this share link.</p>
         <Link href="/" className="text-[var(--teal)] underline underline-offset-4">
-          Forge your own on UNVOXD
+          Forge your own on Hood Forged
         </Link>
       </div>
     );
@@ -39,7 +39,7 @@ export function ShareView() {
       <div className="mx-auto max-w-lg space-y-4 py-20 text-center">
         <p className="text-[var(--muted)]">Could not load this character.</p>
         <Link href="/" className="text-[var(--teal)] underline underline-offset-4">
-          Forge your own on UNVOXD
+          Forge your own on Hood Forged
         </Link>
       </div>
     );
@@ -66,7 +66,7 @@ export function ShareView() {
         </h1>
         <p className="font-mono text-sm text-[var(--ink)]/80">{formula}</p>
         <p className="text-sm text-[var(--muted)]">
-          Forged on UNVOXD — every math formula becomes a one-of-one character.
+          Forged on Hood Forged — every math formula becomes a one-of-one character.
         </p>
         <Link
           href="/"

@@ -48,7 +48,7 @@ export async function GET(request: Request) {
               opacity: 0.75,
             }}
           >
-            <span>UNVOXD</span>
+            <span>Hood Forged</span>
             <span style={{ fontSize: 22, letterSpacing: 2 }}>{traits.rarity}</span>
           </div>
 

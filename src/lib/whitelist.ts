@@ -33,14 +33,14 @@ export const WHITELIST_TASKS: WhitelistTask[] = [
   {
     id: "like",
     step: "02",
-    title: "Like the pinned UNVOXD post",
+    title: "Like the pinned Hood Forged post",
     openUrl: PINNED_TWEET_URL,
     openLabel: "Like",
   },
   {
     id: "retweet",
     step: "03",
-    title: "Repost the pinned UNVOXD post",
+    title: "Repost the pinned Hood Forged post",
     openUrl: PINNED_TWEET_URL,
     openLabel: "Repost",
   },
