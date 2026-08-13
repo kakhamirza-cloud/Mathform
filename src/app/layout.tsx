@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   ),
   title: "Hood Forged — Formula Characters",
   description:
-    "Enter a math formula. Forge a unique character NFT from its structure and results.",
+    "Formula becomes character. 3333 pixel mints on Robinhood Chain. Optional junk NFT staking for $UNVX.",
 };
 
 export default function RootLayout({

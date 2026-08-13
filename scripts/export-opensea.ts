@@ -4,6 +4,7 @@
  * Usage:
  *   npx tsx scripts/export-opensea.ts [count]
  *   npx tsx scripts/export-opensea.ts 3333 --pixel-only   # rewrite PNGs (+ metadata) only
+ *   npx tsx scripts/export-opensea.ts 3333 --cooler-mint    # pixel PNGs + cooler OpenSea pack
  *
  * Default count = 24. Pass 3333 for full supply.
  *
@@ -14,6 +15,7 @@
  */
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 import { createCanvas } from "@napi-rs/canvas";
 import { analyzeFormula } from "../src/lib/formula";
 import { buildTraits, type CharacterTraits } from "../src/lib/traits";
@@ -92,6 +94,7 @@ function main() {
 
   const args = process.argv.slice(2);
   const pixelOnly = args.includes("--pixel-only");
+  const coolerMint = args.includes("--cooler-mint");
   const countArg = args.find((a) => /^\d+$/.test(a));
   const count = Math.max(
     1,
@@ -188,14 +191,27 @@ function main() {
 | Path | What |
 |---|---|
 | \`forge/images/*.svg\` | Base forge characters |
-| \`cooler/images/*.png\` | **Pixel art** (24×24 upscaled, #ccff00) — main OpenSea image |
-| \`metadata/*.json\` | OpenSea traits (includes **Power**) |
+| \`cooler/images/*.png\` | **Pixel art** (24×24 upscaled, #ccff00) — **OpenSea mint image** |
+| \`cooler/metadata/*.json\` | Cooler-only token metadata (no forge animation) |
+| \`metadata/*.json\` | Legacy shared metadata (includes forge animation_url) |
 
-## Full 3333
+## OpenSea mint (cooler only)
+
+\`\`\`bash
+npx tsx scripts/export-opensea.ts 3333 --pixel-only
+npx tsx scripts/prepare-cooler-mint.ts
+# After IPFS upload:
+npx tsx scripts/apply-ipfs-cid.ts <YOUR_CID>
+\`\`\`
+
+See \`cooler/MINT.md\` for full steps.
+
+## Full 3333 export
 
 \`\`\`bash
 npx tsx scripts/export-opensea.ts 3333
 npx tsx scripts/export-opensea.ts 3333 --pixel-only
+npx tsx scripts/export-opensea.ts 3333 --cooler-mint
 \`\`\`
 `,
     "utf8",
@@ -204,6 +220,14 @@ npx tsx scripts/export-opensea.ts 3333 --pixel-only
   console.log(`\nDone → ${ROOT}`);
   console.log(`Forge SVG:  ${FORGE_IMG}`);
   console.log(`Pixel PNG:  ${COOLER_IMG}`);
+
+  if (coolerMint) {
+    console.log("\nPreparing cooler OpenSea mint pack…");
+    execSync("npx --yes tsx scripts/prepare-cooler-mint.ts", {
+      stdio: "inherit",
+      cwd: process.cwd(),
+    });
+  }
 }
 
 main();

@@ -126,10 +126,10 @@ export function MintStudio() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-1">
+          <div className="flex flex-col gap-2 pt-1 sm:flex-row sm:flex-wrap sm:gap-3">
             <button
               type="submit"
-              className="forge-btn rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-semibold tracking-wide text-[var(--brand)] transition hover:bg-[#1a1a1a] hover:shadow-[0_0_24px_rgba(10,10,10,0.28)]"
+              className="forge-btn w-full rounded-sm bg-[var(--ink)] px-5 py-3 text-sm font-semibold tracking-wide text-[var(--brand)] transition hover:bg-[#1a1a1a] hover:shadow-[0_0_24px_rgba(10,10,10,0.28)] sm:w-auto"
             >
               Forge character
             </button>
@@ -137,7 +137,7 @@ export function MintStudio() {
               type="button"
               onClick={() => setShowCoolArt(true)}
               disabled={!traits}
-              className="rounded-sm border border-[var(--ink)]/40 bg-white/40 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--ink)] hover:text-[var(--brand)] disabled:cursor-not-allowed disabled:opacity-40"
+              className="w-full rounded-sm border border-[var(--ink)]/40 bg-white/40 px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:bg-[var(--ink)] hover:text-[var(--brand)] disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
             >
               Turn into pixel art
             </button>
@@ -145,7 +145,7 @@ export function MintStudio() {
               type="button"
               onClick={handleShare}
               disabled={!traits}
-              className="share-btn rounded-sm border border-[var(--ink)]/20 bg-[var(--paper)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:border-[var(--teal)] hover:text-[var(--teal)] disabled:cursor-not-allowed disabled:opacity-40"
+              className="share-btn w-full rounded-sm border border-[var(--ink)]/20 bg-[var(--paper)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--ink)] transition hover:border-[var(--teal)] hover:text-[var(--teal)] disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
             >
               Share on X
             </button>

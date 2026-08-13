@@ -1,39 +1,38 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PowerPreview } from "@/components/PowerPreview";
+import { WalletButton } from "@/components/WalletButton";
 
 export const metadata: Metadata = {
-  title: "Power | Hood Forged",
+  title: "Power Preview | Hood Forged",
   description:
-    "Preview how Power turns Hood Forged characters into formula-gathering workers.",
+    "Preview of what's coming — stake NFTs, earn $UNVX, put Power to work. Not live yet.",
 };
 
 export default function PowerPage() {
   return (
     <>
-      <header className="border-b border-[var(--ink)]/10 px-6 py-6 sm:px-10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+      <header className="border-b border-[var(--ink)]/10 px-4 py-4 sm:px-10 sm:py-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
           <Link
             href="/"
-            className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-[0.14em] text-[var(--ink)]"
+            className="font-[family-name:var(--font-display)] text-lg font-extrabold tracking-[0.12em] text-[var(--ink)] sm:text-2xl sm:tracking-[0.14em]"
           >
             Hood Forged
           </Link>
-          <nav className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-wider uppercase">
+          <nav className="flex flex-wrap items-center justify-end gap-2 font-mono text-[10px] tracking-wider uppercase sm:gap-3 sm:text-xs">
             <Link href="/" className="text-[var(--muted)] hover:text-[var(--ink)]">
               Forge
             </Link>
-            <span className="text-[var(--teal)]">Power</span>
-            <Link
-              href="/whitelist"
-              className="text-[var(--muted)] hover:text-[var(--ink)]"
-            >
+            <span className="text-[var(--ink)]">Power</span>
+            <Link href="/whitelist" className="text-[var(--muted)] hover:text-[var(--ink)]">
               Whitelist
             </Link>
+            <WalletButton />
           </nav>
         </div>
       </header>
-      <main className="px-6 py-10 sm:px-10 sm:py-14">
+      <main className="px-4 py-8 sm:px-10 sm:py-14">
         <PowerPreview />
       </main>
     </>

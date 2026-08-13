@@ -389,3 +389,14 @@ footer {
     transform: translateX(0);
   }
 }
+
+.hero-tile {
+  aspect-ratio: 1;
+  animation: rise 0.55s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tile {
+    animation: none;
+  }
+}
