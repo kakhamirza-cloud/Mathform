@@ -43,6 +43,12 @@ export default function Home() {
             >
               Whitelist
             </Link>
+            <Link
+              href="/check"
+              className="text-[10px] font-medium tracking-[0.1em] uppercase text-[var(--muted)] transition hover:text-[var(--ink)] sm:text-xs sm:tracking-[0.12em]"
+            >
+              WL check
+            </Link>
             <WalletButton />
           </nav>
         </div>
@@ -81,6 +87,12 @@ export default function Home() {
               className="rounded-sm border border-[var(--ink)]/40 bg-white/45 px-5 py-3 text-xs font-medium tracking-[0.12em] uppercase text-[var(--ink)] transition hover:bg-[var(--ink)] hover:text-[var(--brand)] sm:px-6 sm:py-3.5 sm:text-sm sm:tracking-[0.14em]"
             >
               Join whitelist
+            </Link>
+            <Link
+              href="/check"
+              className="rounded-sm border border-[var(--ink)]/25 bg-white/30 px-5 py-3 text-xs font-medium tracking-[0.12em] uppercase text-[var(--ink)] transition hover:border-[var(--ink)]/50 sm:px-6 sm:py-3.5 sm:text-sm sm:tracking-[0.14em]"
+            >
+              Check WL
             </Link>
             <Link
               href="/power"

@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PowerPreview } from "@/components/PowerPreview";
+import { WlChecker } from "@/components/WlChecker";
 import { WalletButton } from "@/components/WalletButton";
 
 export const metadata: Metadata = {
-  title: "Power Preview | Hood Forged",
-  description:
-    "Preview of what's coming — stake NFTs, earn $UNVX, put Power to work. Not live yet.",
+  title: "WL Checker | Hood Forged",
+  description: "Check if your wallet is on the Hood Forged whitelist.",
 };
 
-export default function PowerPage() {
+export default function CheckPage() {
   return (
     <>
       <header className="border-b border-[var(--ink)]/10 px-4 py-4 sm:px-10 sm:py-6">
@@ -24,19 +23,19 @@ export default function PowerPage() {
             <Link href="/" className="text-[var(--muted)] hover:text-[var(--ink)]">
               Forge
             </Link>
-            <span className="text-[var(--ink)]">Power</span>
+            <Link href="/power" className="text-[var(--muted)] hover:text-[var(--ink)]">
+              Power
+            </Link>
             <Link href="/whitelist" className="text-[var(--muted)] hover:text-[var(--ink)]">
               Whitelist
             </Link>
-            <Link href="/check" className="text-[var(--muted)] hover:text-[var(--ink)]">
-              Check
-            </Link>
+            <span className="text-[var(--ink)]">Check</span>
             <WalletButton />
           </nav>
         </div>
       </header>
       <main className="px-4 py-8 sm:px-10 sm:py-14">
-        <PowerPreview />
+        <WlChecker />
       </main>
     </>
   );
